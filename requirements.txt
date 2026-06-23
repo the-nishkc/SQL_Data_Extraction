@@ -1,0 +1,6 @@
+THE ESSENTIAL MODULES FOR THE PROJECT
+
+* pandas
+* numpy
+* matplotlib
+* sqlite3
