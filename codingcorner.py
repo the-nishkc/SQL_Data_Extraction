@@ -2,11 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# ----------------------------------
-# LOAD DATA
-# ----------------------------------
 df = pd.read_csv("supermarket_sales - Sheet1.csv")
-
 print("=" * 50)
 print("DATASET OVERVIEW")
 print("=" * 50)
@@ -18,9 +14,6 @@ print(df.columns.tolist())
 print("\nData Types:")
 print(df.dtypes)
 
-# ----------------------------------
-# DATA CLEANING
-# ----------------------------------
 df.columns = (
     df.columns
     .str.strip()
@@ -47,9 +40,6 @@ df.to_csv("supermarket_sales_cleaned.csv", index=False)
 
 print("\nCleaned Dataset Saved!")
 
-# ----------------------------------
-# SALES DISTRIBUTION
-# ----------------------------------
 plt.figure(figsize=(8,5))
 plt.hist(df["total"], bins=30)
 plt.title("Sales Distribution")
@@ -58,9 +48,6 @@ plt.ylabel("Frequency")
 plt.grid(True)
 plt.show()
 
-# ----------------------------------
-# PRODUCT LINE REVENUE
-# ----------------------------------
 product_sales = df.groupby("product_line")["total"].sum()
 
 plt.figure(figsize=(10,5))
@@ -72,9 +59,6 @@ plt.ylabel("Revenue")
 plt.tight_layout()
 plt.show()
 
-# ----------------------------------
-# BRANCH REVENUE
-# ----------------------------------
 branch_sales = df.groupby("branch")["total"].sum()
 
 plt.figure(figsize=(6,4))
@@ -84,9 +68,6 @@ plt.xlabel("Branch")
 plt.ylabel("Revenue")
 plt.show()
 
-# ----------------------------------
-# CITY REVENUE
-# ----------------------------------
 city_sales = df.groupby("city")["total"].sum()
 
 plt.figure(figsize=(6,4))
@@ -96,9 +77,6 @@ plt.xlabel("City")
 plt.ylabel("Revenue")
 plt.show()
 
-# ----------------------------------
-# PAYMENT METHODS
-# ----------------------------------
 payment_counts = df["payment"].value_counts()
 
 plt.figure(figsize=(6,4))
@@ -108,9 +86,6 @@ plt.xlabel("Payment Method")
 plt.ylabel("Count")
 plt.show()
 
-# ----------------------------------
-# GENDER DISTRIBUTION
-# ----------------------------------
 gender_counts = df["gender"].value_counts()
 
 plt.figure(figsize=(5,4))
@@ -120,9 +95,6 @@ plt.xlabel("Gender")
 plt.ylabel("Count")
 plt.show()
 
-# ----------------------------------
-# CUSTOMER TYPE
-# ----------------------------------
 customer_counts = df["customer_type"].value_counts()
 
 plt.figure(figsize=(5,4))
@@ -132,9 +104,6 @@ plt.xlabel("Customer Type")
 plt.ylabel("Count")
 plt.show()
 
-# ----------------------------------
-# DAILY SALES TREND
-# ----------------------------------
 daily_sales = df.groupby("date")["total"].sum()
 
 plt.figure(figsize=(12,5))
@@ -145,9 +114,6 @@ plt.ylabel("Revenue")
 plt.grid(True)
 plt.show()
 
-# ----------------------------------
-# HOURLY SALES
-# ----------------------------------
 hourly_sales = df.groupby("hour")["total"].sum()
 
 plt.figure(figsize=(8,4))
@@ -157,9 +123,6 @@ plt.xlabel("Hour")
 plt.ylabel("Revenue")
 plt.show()
 
-# ----------------------------------
-# CORRELATION HEATMAP
-# ----------------------------------
 numeric_df = df.select_dtypes(include=np.number)
 
 corr = numeric_df.corr()
@@ -183,9 +146,6 @@ plt.title("Correlation Heatmap")
 plt.tight_layout()
 plt.show()
 
-# ----------------------------------
-# BUSINESS INSIGHTS
-# ----------------------------------
 print("\n" + "=" * 50)
 print("BUSINESS INSIGHTS")
 print("=" * 50)
